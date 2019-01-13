@@ -5,3 +5,5 @@ Currently a work in progress
 
 Dependencies:
 Selenium
+
+Hope to make this an exe someday with a GUI :') but I just started
