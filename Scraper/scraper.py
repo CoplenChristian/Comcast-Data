@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from NumberCheck import NumberCheck
+import re
 
 def ComcastLogin(user, password):
     usernameStr = user
@@ -32,7 +34,22 @@ def ComcastLogin(user, password):
             print("Did not work.")
             break
 
-    browser.implicitly_wait(10)
+    time.sleep(5)
+    if browser.current_url == "https://customer.xfinity.com/#/services/internet":
+        data = browser.page_source
+
+    months = re.findall('(?<=<b>).+?(?=</b>)', data, re.DOTALL)
+
+    usage = []
+
+    for item in months:
+        check = NumberCheck(item)
+        if check == True:
+            usage.append(item)
+
+    print(months)
+    print(usage)
 
 
-    
+
+        
