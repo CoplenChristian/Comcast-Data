@@ -47,9 +47,15 @@ def ComcastLogin(user, password):
         if check == True:
             usage.append(item)
 
-    print(months)
-    print(usage)
+    months_clean = [month for month in months if 'Norton' not in month]
+    #unused for now
+    months_clean2 = [month for month in months_clean if month not in usage]
 
+
+
+    used = str(int(months_clean[1].replace("GB", "")) - int(months_clean[0].replace("GB", "")))
+
+    print("You have used " + used, "gigabytes of data so far this month. You still have " + str(months_clean[0].replace("GB", " ")) + "gigabytes of data remaining.")
 
 
         
